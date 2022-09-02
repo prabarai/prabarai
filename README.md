@@ -22,9 +22,7 @@
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
-  <a href="https://twitter.com/cincleeno" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="cincleeno" height="30" width="40" /></a>
   <a href="https://linkedin.com/in/prabarai" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="prabarai" height="30" width="40" /></a>
-  <a href="https://fb.com/cincleeno" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg" alt="cincleeno" height="30" width="40" /></a>
   <a href="https://instagram.com/cincleeno_" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="cincleeno_" height="30" width="40" /></a>
   <a href="https://www.youtube.com/channel/UCbMyAz3kEMlay_tzrH1uw0g" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="ucbmyaz3kemlay_tzrh1uw0gcincleenohttps://www.youtube.com/channel/ucbmyaz3kemlay_tzrh1uw0g" height="30" width="40" /></a>
 </p>
