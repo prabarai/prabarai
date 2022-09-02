@@ -55,11 +55,11 @@
 
 📊 Github Status
 
-<p><img src="https://activity-graph.herokuapp.com/graph?username=prabarai"><p>
+<p><img src="https://activity-graph.herokuapp.com/graph?username=prabarai&theme=dracula&"><p>
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=prabarai&show_icons=true&locale=en" alt="prabarai" /></p>
+<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=prabarai&show_icons=true&theme=dracula&locale=en" alt="prabarai" /></p>
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=prabarai&" alt="prabarai" /></p>
+<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=prabarai&theme=dracula&" alt="prabarai" /></p>
 
 <h3 align="left">Connect with me:</h3>
 
