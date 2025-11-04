@@ -8,7 +8,7 @@
 </p>
 
 - 🎓 I’m currently pursuing a **Master of Information Technology at Murdoch University** — majoring in **Cybersecurity & Networking**.  
-- 💼 Previously a **Software Engineer** (Angular • Laravel • ASP.NET Core) building responsive, production-grade web apps.  
+- 💼 Previously a **Software Engineer** (Angular • Laravel • ASP.NET Core) building responsive, production grade web apps.  
 - 📝 I sometimes write here: **[cincleeno.substack.com](https://cincleeno.substack.com/)**  
 - ⚡ Outside of code: **hiking, nature photography, and vlogging**.
 
@@ -35,7 +35,7 @@
 ---
 
 ### 💼 Experience Highlights
-- **Software Engineer — SELISE (2020–2023)**: Built Angular + Laravel apps, improved performance and UX; mentored juniors; agile delivery.  
+- **Software Engineer — SELISE (2020–2023)**: Built Angular, explored hotwire, improved performance and UX; mentored juniors; agile delivery.  
 - **Developer — Yangkhor IT Solution (2018–2020)**: Full-stack web development, Kendo UI/jQuery integrations, code optimisation.  
 - **Web Dev/Designer — aBit Pvt Ltd (2016–2018)**: Custom WordPress themes, PHP/JS/MySQL, responsive design and client delivery.
 
