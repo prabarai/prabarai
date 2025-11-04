@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Praba (Cincleeno) – Software Engineer · Cybersecurity & Networking</title>
+  <meta name="description" content="Portfolio of Praba (Cincleeno) — Software Engineer & Master's student in Cybersecurity & Networking." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0e1a;
+      --card: #0f1730;
+      --muted: #b7c6e6;
+      --text: #f6f8ff;
+      --accent: #ffb7e1; /* candy pink */
+      --accent2: #9cd8ff; /* sky blue */
+      --pill: rgba(255, 183, 225, 0.18);
+      --ring: rgba(156, 216, 255, 0.45);
+      /* Cursor (wand) theme */
+      --wand-size: 34px; /* medium */
+      --wand-glow-1: rgba(255, 210, 130, .9);  /* gold glow */
+      --wand-glow-2: rgba(255, 190, 90, .6);
+      --wand-ring: rgba(255, 208, 120, .8);
+    }
+
+    /* Base layout */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font: 16px/1.7 'Poppins', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 70% -10%, #1a2a4d 0%, var(--bg) 50%) no-repeat,
+                  radial-gradient(1000px 700px at 0% 100%, #0d1527 0%, var(--bg) 60%) no-repeat,
+                  var(--bg);
+      overflow-x: hidden;
+    }
+
+    /* THEME OVERRIDES */
+    body.theme-magical {
+      --bg: #0a0e1a;
+      --card: #0f1730;
+      --muted: #b7c6e6;
+      --text: #f6f8ff;
+      --accent: #ffb7e1;
+      --accent2: #9cd8ff;
+      --pill: rgba(255, 183, 225, 0.18);
+      --ring: rgba(156, 216, 255, 0.45);
+    }
+    body.theme-simple {
+      --bg: #0b0f19;
+      --card: #0e1424;
+      --muted: #c8d2e6;
+      --text: #f2f5ff;
+      --accent: #9fb6ff; /* calm indigo */
+      --accent2: #9fb6ff;
+      --pill: rgba(159, 182, 255, 0.14);
+      --ring: rgba(159, 182, 255, 0.28);
+      background: radial-gradient(1000px 700px at 50% -20%, #101a33 0%, var(--bg) 55%) no-repeat, var(--bg);
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; position: relative; }
+
+    /* Card */
+    .card {
+      position: relative;
+      /* Stronger glassmorphism */
+      background:
+        /* subtle noise (top layer) */
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .035 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>") repeat,
+        /* soft inner highlight */
+        radial-gradient(120% 160% at 20% -20%, rgba(255,255,255,0.10), rgba(255,255,255,0) 60%),
+        /* base frosted sheet */
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.18);
+      -webkit-backdrop-filter: blur(14px) saturate(120%);
+      backdrop-filter: blur(14px) saturate(120%);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.45), inset 0 0 0 1px var(--ring);
+      border-radius: 20px;
+      padding: 28px;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px) rotate(-0.35deg) perspective(800px) rotateX(1.2deg);
+      box-shadow: 0 26px 60px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.22);
+    }
+    /* subtle rainbow edge on hover */
+    .card::after {
+      content: ""; position: absolute; inset: -2px; border-radius: 22px; pointer-events: none;
+      background: conic-gradient(from 160deg at 50% 50%, rgba(255,183,225,.16), rgba(156,216,255,.16), rgba(255,183,225,.16));
+      -webkit-mask: linear-gradient(#000,#000) content-box, linear-gradient(#000,#000);
+      mask: linear-gradient(#000,#000) content-box, linear-gradient(#000,#000);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      padding: 1.2px; opacity: 0; transition: opacity .4s ease;
+    }
+    .card:hover::after { opacity: 1; }
+
+    /* floating corner twinkle */
+    .card::before {
+      content: ""; position: absolute; top: -30px; right: -30px; width: 140px; height: 140px; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle at 40% 40%, rgba(255,255,255,.7), rgba(255,255,255,0));
+      filter: blur(8px); opacity: .0; transition: opacity .35s ease, transform .35s ease;
+      transform: translateZ(0) scale(1);
+    }
+    .card:hover::before { opacity: .55; transform: translateZ(0) scale(1.08); }
+
+    header.hero {
+      text-align: center;
+      padding: 48px 16px 24px;
+    }
+    .title { 
+      font-size: clamp(30px, 6.2vw, 48px); 
+      font-weight: 800; 
+      letter-spacing: 0.4px; 
+      background: linear-gradient(90deg, var(--accent), var(--accent2)); 
+      -webkit-background-clip: text; background-clip: text; color: transparent; 
+      text-shadow: 0 2px 24px rgba(255,183,225,0.25), 0 2px 32px rgba(156,216,255,0.18);
+    }
+    .subtitle { color: var(--muted); font-size: clamp(14px, 2.8vw, 18px); margin-top: 10px; }
+    .cute-divider { text-align: center; font-size: 18px; letter-spacing: 6px; opacity: 0.9; margin: 8px 0 0; background: linear-gradient(90deg, #ffd3ec, #bde6ff); -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 5s linear infinite; }
+    @keyframes shimmer { 0%{filter: drop-shadow(0 0 0 rgba(255,255,255,0.3));} 50%{filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));} 100%{filter: drop-shadow(0 0 0 rgba(255,255,255,0.3));} }
+
+    .badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 18px 0 6px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(180deg, rgba(255,183,225,0.18), rgba(156,216,255,0.16)); color: var(--text);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px; padding: 9px 14px; font-size: 14px; font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35), inset 0 0 0 1px var(--ring);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .badge:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 10px 28px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.22); }
+    .badge svg { width: 16px; height: 16px; opacity: 0.9; }
+
+    /* Sections */
+    section { margin: 28px 0; }
+    h2 { font-size: 22px; margin: 0 0 14px; letter-spacing: 0.3px; }
+    p.lead { color: var(--muted); margin: 6px 0 0; }
+
+    .grid { display: grid; gap: 18px; }
+    @media (min-width: 900px) {
+      .grid.two { grid-template-columns: 1.1fr 1fr; }
+      .grid.three { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    ul.clean { list-style: none; margin: 0; padding: 0; }
+    ul.clean li { padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.08); }
+    ul.clean li:last-child { border-bottom: 0; }
+
+    .pill { display: inline-block; padding: 8px 12px; border-radius: 999px; background: var(--pill); border: 1px solid rgba(255,255,255,0.08); margin: 6px 6px 0 0; font-size: 13px; color: #d9e7ff; }
+
+    footer { text-align: center; color: var(--muted); font-size: 14px; margin-top: 36px; }
+
+    /* SNOWFALL ---------------------------------------------- */
+    .snow-layer { position: fixed; inset: 0; pointer-events: none; z-index: 9998; overflow: hidden; }
+    .snowflake {
+      --snow-color: #ffffff;
+      --glow-color: rgba(156, 216, 255, 0.95);
+      position: absolute;
+      top: -2vh;
+      width: var(--size);
+      height: var(--size);
+      background: radial-gradient(circle at 35% 35%, var(--snow-color), rgba(255,255,255,0));
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--glow-color), 0 0 16px rgba(156,216,255,0.7), 0 0 30px rgba(156,216,255,0.45);
+      filter: drop-shadow(0 0 3px rgba(255,255,255,0.9));
+      mix-blend-mode: screen;
+      animation-name: fall, sway, pulse;
+      animation-timing-function: linear, ease-in-out, ease-in-out;
+      animation-iteration-count: infinite, infinite, infinite;
+      will-change: transform, opacity, filter;
+    }
+    @keyframes fall { to { transform: translateY(105vh); } }
+    @keyframes sway {
+      0% { transform: translateX(0) translateY(0) rotate(0deg); }
+      50% { transform: translateX(var(--sway)) translateY(52vh) rotate(180deg); }
+      100% { transform: translateX(calc(var(--sway) * -1)) translateY(105vh) rotate(360deg); }
+    }
+    @keyframes pulse {
+      0% { opacity: 0.55; box-shadow: 0 0 6px var(--glow-color), 0 0 16px rgba(156,216,255,0.6), 0 0 26px rgba(156,216,255,0.35); }
+      50% { opacity: 1; box-shadow: 0 0 12px var(--glow-color), 0 0 26px rgba(156,216,255,0.95), 0 0 44px rgba(156,216,255,0.55); }
+      100% { opacity: 0.55; box-shadow: 0 0 6px var(--glow-color), 0 0 16px rgba(156,216,255,0.6), 0 0 26px rgba(156,216,255,0.35); }
+    }
+
+    /* GLOSSY REFINEMENTS ------------------------------------ */
+    .toggle { position: relative; }
+    .toggle::before { /* glossy sweep */
+      content: ""; position: absolute; inset: -140% -30% auto -30%; height: 200%; border-radius: inherit; pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+      transform: translateX(-60%) rotate(15deg);
+      transition: transform .7s ease, opacity .7s ease; opacity: 0;
+    }
+    .toggle:hover::before { transform: translateX(60%) rotate(15deg); opacity: 1; }
+
+    /* FAIRY SPARKS (for card hover) */
+    .fairy-spark {
+      position: fixed; z-index: 9999; width: 6px; height: 6px; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,0));
+      box-shadow: 0 0 10px rgba(255, 215, 170, 0.95), 0 0 18px rgba(156, 216, 255, 0.65);
+      mix-blend-mode: screen;
+      animation: spark-drift 1.2s ease-out forwards, spark-hue 2s linear infinite;
+    }
+    @keyframes spark-drift {
+      0% { transform: translate(var(--sx,0), var(--sy,0)) scale(.6); opacity: 1; }
+      70% { transform: translate(calc(var(--sx,0)*1.4), calc(var(--sy,0)*1.4)) scale(1.05); opacity: .9; }
+      100% { transform: translate(calc(var(--sx,0)*2.2), calc(var(--sy,0)*2.2)) scale(.2); opacity: 0; }
+    }
+    @keyframes spark-hue { to { filter: hue-rotate(360deg); } }
+
+    /* Reduced motion (hide animated particles) */
+    @media (prefers-reduced-motion: reduce) {
+      .snowflake, .fairy-spark { animation: none !important; display: none !important; }
+    }
+
+    /* CONTROLS --------------------------------------------- */
+    .controls { position: fixed; right: 16px; bottom: 16px; z-index: 10000; display: flex; gap: 10px; flex-wrap: wrap; }
+    .toggle {
+      --gradA: var(--accent); --gradB: var(--accent2);
+      background: linear-gradient(120deg, var(--gradA), var(--gradB), var(--gradA));
+      background-size: 200% 200%;
+      color: #0b0f1a; border: 0; overflow: hidden;
+      border-radius: 999px; padding: 12px 16px; font-weight: 800; letter-spacing: .2px; cursor: pointer;
+      box-shadow: 0 12px 28px rgba(255,183,225,0.25), 0 8px 22px rgba(156,216,255,0.25);
+      transition: transform .18s ease, box-shadow .2s ease, background-position .6s ease;
+    }
+    .toggle:hover { transform: translateY(-2px) scale(1.03); background-position: 100% 0%; box-shadow: 0 16px 34px rgba(255,183,225,0.35), 0 10px 28px rgba(156,216,255,0.35); }
+    .toggle:focus { outline: 2px solid var(--accent2); outline-offset: 3px; }
+
+    /* SIMPLE THEME TWEAKS */
+    body.theme-simple .toggle { background: #1a2746; color: var(--text); box-shadow: 0 6px 16px rgba(0,0,0,0.35); font-weight: 600; }
+    body.theme-simple .toggle:hover { transform: translateY(-1px); background: #213058; box-shadow: 0 10px 20px rgba(0,0,0,0.45); }
+    body.theme-simple .title { background: none; color: var(--text); text-shadow: none; }
+    body.theme-simple .cute-divider { display: none; }
+
+    /* CUTE CURSOR — Magic Wand (Gold, Bigger, No Star) ---------------- */
+    body.cute-cursor { cursor: none; }
+    /* In simple theme, restore normal cursor and hide wand */
+    body.theme-simple { cursor: auto; }
+    body.theme-simple .cursor-wand { display: none; }
+
+    .cursor-wand { position: fixed; inset: 0 auto auto 0; pointer-events: none; z-index: 10002;
+      --rot: -15deg; font-size: var(--wand-size); line-height: 1;
+      filter: drop-shadow(0 0 8px var(--wand-glow-1)) drop-shadow(0 0 14px var(--wand-glow-2));
+      transition: transform .1s ease; transform: translate(-50%, -50%) rotate(var(--rot)) scale(1); }
+    .cursor-wand::before { content: "🪄"; }
+    body.cute-cursor.cursor-hover .cursor-wand { transform: translate(-50%, -50%) rotate(var(--rot)) scale(1.12); }
+
+    .cursor-spark { position: fixed; width: 5px; height: 5px; border-radius: 50%; pointer-events: none; z-index: 10001;
+      background: radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,0));
+      box-shadow: 0 0 8px var(--wand-glow-1), 0 0 16px var(--wand-glow-2);
+      mix-blend-mode: screen; animation: cursor-spark-drift 0.7s ease-out forwards; }
+    @keyframes cursor-spark-drift { from { opacity: .9; transform: translate(-50%, -50%) scale(1);} to { opacity: 0; transform: translate(calc(-50% + 6px), calc(-50% + 6px)) scale(.2);} }
+  
+
+    /* WEATHER WIDGET -------------------------------------- */
+    .weather-fab { position: fixed; right: 16px; top: 50%; transform: translateY(-50%); z-index: 10001; }
+    .weather-btn { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: 0;
+      padding: 10px 14px; border-radius: 999px; font-weight: 800; letter-spacing: .2px; color: #0b0f1a;
+      background: linear-gradient(120deg, var(--accent), var(--accent2)); background-size: 180% 180%;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.35), inset 0 0 0 1px var(--ring);
+      transition: transform .18s ease, box-shadow .2s ease, background-position .6s ease; }
+    .weather-btn:hover { transform: translateY(-2px) scale(1.03); background-position: 100% 0%; box-shadow: 0 14px 32px rgba(0,0,0,0.45); }
+    .weather-emoji { font-size: 20px; line-height: 1; filter: drop-shadow(0 0 6px rgba(255,255,255,.25)); }
+    .weather-temp { font-size: 16px; }
+
+    .weather-panel { margin-top: 10px; padding: 12px 14px; border-radius: 14px; min-width: 160px;
+      background: linear-gradient(180deg, rgba(255,183,225,0.16), rgba(156,216,255,0.14));
+      border: 1px solid rgba(255,255,255,0.16); color: var(--text); backdrop-filter: blur(6px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.35), inset 0 0 0 1px var(--ring); }
+    .weather-row { display:flex; align-items:center; gap:10px; font-weight:700; }
+    .weather-note { margin-top:6px; font-size:12px; color: var(--muted); }
+
+    body.theme-simple .weather-btn { background: #1a2746; color: var(--text); box-shadow: 0 6px 16px rgba(0,0,0,0.35); }
+    body.theme-simple .weather-panel { background: rgba(255,255,255,0.06); }
+    </style>
+</head>
+<body class="theme-magical">
+  <!-- Magic overlays (generated by JS) -->
+  <div class="snow-layer" id="snow"></div>
+  <div class="controls" aria-label="Visual effects controls">
+    <button class="toggle" id="toggleSnow" aria-pressed="true" title="Toggle snowfall" data-testid="btn-snow">❄️ Snow: On</button>
+    <button class="toggle" id="toggleTheme" aria-pressed="true" title="Switch style" data-testid="btn-theme">🌈 Style: Magical</button>
+  </div>
+
+  <div id="weatherFab" class="weather-fab" aria-live="polite">
+    <button id="weatherBtn" class="weather-btn" aria-expanded="false" title="Show local weather">
+      <span class="weather-emoji" aria-hidden="true">⛅</span>
+      <span class="weather-temp">--.-°C</span>
+    </button>
+    <div class="weather-panel" id="weatherPanel" hidden>
+      <div class="weather-row"><span class="weather-emoji" aria-hidden="true">⛅</span><span class="weather-temp">--.-°C</span><span class="weather-wind" aria-hidden="true"></span></div>
+      <div class="weather-note">Auto location (Perth fallback)</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <header class="hero">
+      <div class="card">
+        <div class="title">Praba</div>
+        <div class="subtitle">Software Engineer · Master’s in IT (Cybersecurity & Networking).</div>
+        <div class="badges" aria-label="Contact & meta">
+          <a class="badge" href="mailto:praba.rai42@gmail.com" title="Email">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2-8 5L4 6h16Zm0 12H4V8l8 5 8-5v10Z"/></svg>
+            Email
+          </a>
+          <span class="badge" title="Location">📍Perth</span>
+          <a class="badge" href="https://cincleeno.substack.com" target="_blank" rel="noreferrer noopener">Substack</a>
+          <a class="badge" href="https://github.com/prabarai" target="_blank" rel="noreferrer noopener">GitHub</a>
+          <a class="badge" href="https://twitter.com/cincleeno" target="_blank" rel="noreferrer noopener" title="Twitter">Twitter</a>
+          <a class="badge" href="https://www.linkedin.com/in/prabarai" target="_blank" rel="noreferrer noopener" title="LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+    </header>
+    <div class="cute-divider" aria-hidden="true">✨ ❄️ 💖 ❄️ ✨</div>
+
+    <section class="grid two">
+      <div class="card">
+        <h2>About</h2>
+        <p class="lead">I craft reliable, thoughtfully designed web applications with <strong>Angular</strong>, <strong>Laravel</strong> and <strong>ASP.NET&nbsp;Core</strong>. Calm on the surface, precise in the details—performance, accessibility and maintainability by design.</p>
+        <p class="lead"><strong>Currently</strong> I’m a Master’s student at <strong>Murdoch University</strong> (Cybersecurity &amp; Networking), bringing security and networking depth into my engineering work.</p>
+        <p class="lead">Alongside software, I work as an <strong>Assistant in Nursing (AIN)</strong>. The discipline of clinical practice—triage, documentation, hygiene—shapes how I plan, test and ship.</p>
+        <p class="lead">Away from the keyboard I enjoy golden hour, long walks and good coffee. I value teams that are kind, curious and quietly excellent.</p>
+      </div>
+      <div class="card">
+        <h2>Tech Stack</h2>
+        <div>
+          <span class="pill">HTML5</span>
+          <span class="pill">CSS3/SCSS</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">Angular</span>
+          <span class="pill">Bootstrap</span>
+          <span class="pill">Tailwind</span>
+          <span class="pill">jQuery</span>
+          <span class="pill">Kendo UI</span>
+          <span class="pill">PHP</span>
+          <span class="pill">Laravel</span>
+          <span class="pill">ASP.NET Core</span>
+          <span class="pill">C#</span>
+          <span class="pill">Python</span>
+          <span class="pill">WordPress</span>
+          <span class="pill">Git</span>
+          <span class="pill">Agile/Scrum</span>
+          <span class="pill">Figma</span>
+          <span class="pill">Photoshop</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <h2>Experience</h2>
+        <ul class="clean">
+          <li>
+            <strong>Software Engineer in SELISE, Thimphu</strong> (2020–2023)
+            <div class="lead">Angular + Tailwind front‑ends; Agile delivery; Mentoring.</div>
+          </li>
+          <li>
+            <strong>Developer in Yangkhor IT Solution</strong> (2018–2020)
+            <div class="lead">Full‑stack with Laravel, ASP.NET Core, modern JS; performance tuning; UX improvements.</div>
+          </li>
+          <li>
+            <strong>Web Dev & Designer in aBit Pvt Ltd</strong> (2016–2018)
+            <div class="lead">Custom WordPress themes (PHP/JS/MySQL); ~25% page‑speed improvements.</div>
+          </li>
+          <li>
+            <strong>Intern in aBit Pvt Ltd</strong> (2016)</strong>
+            <div class="lead">HTML/CSS/Bootstrap builds, Photoshop UI tasks, theme support.</div>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Education</h2>
+        <ul class="clean">
+          <li><strong>Murdoch University, Perth</strong> — Master’s in IT (Cybersecurity & Networking), <em>Feb 2024 – Present</em></li>
+          <li><strong>Punjab Technical University, India</strong> — BCA</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>© <span id="year"></span>Cincleeno.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Helpers
+    const bodyEl = document.body;
+
+    // ========= Snow =========
+    const snowContainer = document.getElementById('snow');
+    const toggleSnowBtn = document.getElementById('toggleSnow');
+    let snowEnabled = true;
+
+    function getSnowCount(){
+      // Fewer flakes overall (both themes), scaled by viewport width
+      const base = bodyEl.classList.contains('theme-simple') ? 36 : 72; // light & calm
+      const divisor = bodyEl.classList.contains('theme-simple') ? 22 : 18; // bigger divisor => fewer flakes
+      const minCount = Math.floor(base * 0.5);
+      const byViewport = Math.floor(window.innerWidth / divisor);
+      return Math.max(minCount, Math.min(base, byViewport));
+    }
+
+    function makeFlake(i) {
+      const f = document.createElement('div');
+      f.className = 'snowflake';
+      const size = (Math.random() * (bodyEl.classList.contains('theme-simple') ? 2.2 : 3) + (bodyEl.classList.contains('theme-simple') ? 1.2 : 1.6)).toFixed(2) + 'px';
+      const left = Math.random() * 100; // vw
+      const delay = (Math.random() * 8).toFixed(2) + 's';
+      const duration = (Math.random() * (bodyEl.classList.contains('theme-simple') ? 10 : 12) + (bodyEl.classList.contains('theme-simple') ? 10 : 12)).toFixed(2) + 's'; // slower fall
+      const sway = (Math.random() * (bodyEl.classList.contains('theme-simple') ? 18 : 24) + (bodyEl.classList.contains('theme-simple') ? 4 : 6)).toFixed(0) + 'px'; // gentler sway
+      f.style.setProperty('--size', size);
+      f.style.left = left + 'vw';
+      f.style.animationDelay = `${delay}, ${delay}, ${delay}`;
+      f.style.animationDuration = `${duration}, ${(parseFloat(duration) * 0.9).toFixed(2)}s, ${(Math.random()*2 + 1.6).toFixed(2)}s`;
+      f.style.setProperty('--sway', sway);
+      f.style.opacity = (Math.random() * 0.35 + 0.45).toFixed(2); // slightly subtler flakes
+      return f;
+    }
+
+    function populateSnow() {
+      snowContainer.innerHTML = '';
+      if (!snowEnabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const count = getSnowCount();
+      for (let i = 0; i < count; i++) snowContainer.appendChild(makeFlake(i));
+    }
+
+    // Initial render
+    populateSnow();
+
+    // Toggle Snow
+    toggleSnowBtn.addEventListener('click', () => {
+      snowEnabled = !snowEnabled;
+      toggleSnowBtn.setAttribute('aria-pressed', String(snowEnabled));
+      toggleSnowBtn.textContent = snowEnabled ? '❄️ Snow: On' : '❄️ Snow: Off';
+      populateSnow();
+    });
+
+    // Theme switch
+    const toggleThemeBtn = document.getElementById('toggleTheme');
+    toggleThemeBtn.addEventListener('click', () => {
+      const simple = bodyEl.classList.toggle('theme-simple');
+      if (simple) bodyEl.classList.remove('theme-magical'); else bodyEl.classList.add('theme-magical');
+      toggleThemeBtn.textContent = simple ? '🕊️ Style: Simple' : '🌈 Style: Magical';
+      populateSnow();
+    });
+
+    // Re-populate on resize (throttled)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { populateSnow(); }, 200);
+    });
+
+    // ======== Card hover fairy sparks ========
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function burstFairyAt(x, y, count=10, spread=26) {
+      if (prefersReduced) return;
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('div');
+        s.className = 'fairy-spark';
+        const angle = (Math.PI * 2) * (i / count) + Math.random()*0.8;
+        const dist = 8 + Math.random() * spread;
+        const sx = Math.cos(angle) * dist;
+        const sy = Math.sin(angle) * dist;
+        s.style.setProperty('--sx', sx + 'px');
+        s.style.setProperty('--sy', sy + 'px');
+        s.style.left = x + 'px';
+        s.style.top = y + 'px';
+        document.body.appendChild(s);
+        s.addEventListener('animationend', () => s.remove());
+      }
+    }
+
+    function attachCardSparks() {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        let lastTime = 0;
+        const throttle = 70; // ms between spark bursts while moving
+        card.addEventListener('mouseenter', () => {
+          const r = card.getBoundingClientRect();
+          burstFairyAt(r.left + r.width*0.85, r.top + r.height*0.15, 12, 30);
+        });
+        card.addEventListener('mousemove', (e) => {
+          const now = performance.now();
+          if (now - lastTime > throttle) {
+            lastTime = now;
+            burstFairyAt(e.clientX, e.clientY, 6, 18);
+          }
+        });
+      });
+    }
+
+    attachCardSparks();
+
+    // ======== Weather (Open-Meteo, no API key) ========
+    const weatherFab = document.getElementById('weatherFab');
+    const weatherBtn = document.getElementById('weatherBtn');
+    const weatherPanel = document.getElementById('weatherPanel');
+
+    function setWeatherText(tempC, code, windKmh){
+      if (!weatherFab) return;
+      const emojies = weatherFab.querySelectorAll('.weather-emoji');
+      const temps  = weatherFab.querySelectorAll('.weather-temp');
+      const windEl = weatherFab.querySelector('.weather-wind');
+      const emoji = codeToEmoji(code);
+      const windEmoji = (typeof windKmh === 'number' && windKmh >= 30) ? '🌬️' : '';
+      emojies.forEach(e => e.textContent = emoji);
+      const tempTxt = (typeof tempC === 'number') ? `${tempC.toFixed(1)}°C` : '--.-°C';
+      temps.forEach(t => t.textContent = tempTxt);
+      if (windEl) windEl.textContent = windEmoji;
+    }
+
+    async function getWeather(lat, lon){
+      try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,wind_speed_10m&timezone=auto`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Weather HTTP '+res.status);
+        const data = await res.json();
+        const cur = data.current || {};
+        const t = (typeof cur.temperature_2m === 'number') ? cur.temperature_2m : null;
+        const code = cur.weather_code;
+        const wind = (typeof cur.wind_speed_10m === 'number') ? cur.wind_speed_10m : null; // km/h default
+        setWeatherText(t, code, wind);
+      } catch (e){ console.error('Weather error:', e); }
+    }
+
+    function codeToEmoji(code){
+      if (code === 0) return '☀️';
+      if ([1,2,3].includes(code)) return '⛅';
+      if ([45,48].includes(code)) return '🌫️';
+      if ((code>=51 && code<=67) || (code>=80 && code<=82)) return '🌧️';
+      if (code>=71 && code<=77) return '❄️';
+      if (code>=95) return '⛈️';
+      return '☁️';
+    }
+
+    function initWeather(){
+      const fallback = { lat: -32.066, lon: 115.846 }; // Perth area fallback
+      if (!('geolocation' in navigator)) { getWeather(fallback.lat, fallback.lon); return; }
+      navigator.geolocation.getCurrentPosition(
+        pos => getWeather(pos.coords.latitude, pos.coords.longitude),
+        ()  => getWeather(fallback.lat, fallback.lon),
+        { enableHighAccuracy: false, timeout: 6000, maximumAge: 10*60*1000 }
+      );
+    }
+
+    // Toggle panel
+    if (weatherBtn && weatherPanel){
+      weatherBtn.addEventListener('click', () => {
+        const open = weatherBtn.getAttribute('aria-expanded') === 'true';
+        weatherBtn.setAttribute('aria-expanded', String(!open));
+        weatherPanel.hidden = open;
+      });
+    }
+
+    initWeather();
+    // refresh every 15 min
+    setInterval(initWeather, 15 * 60 * 1000);
+  </script>
+
+  <script>
+  // Cute cursor — magic wand (Gold, bigger, no star) — always on for mouse/trackpad, no toggle
+  // Damped rotation so it doesn't spin too much
+  // In SIMPLE theme: no wand and **no cursor sparks** (normal system cursor)
+  (function(){
+    const fine = window.matchMedia('(pointer: fine)').matches;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!fine || reduce) return; // don't enable on touch or when motion reduced
+
+    document.body.classList.add('cute-cursor');
+    const wand = document.createElement('div'); wand.className = 'cursor-wand';
+    document.body.append(wand);
+
+    let x = window.innerWidth/2, y = window.innerHeight/2;
+    let tx = x, ty = y; // targets
+    const POS_SPEED = 0.20; // follow speed for position
+
+    // Rotation damping parameters
+    let rot = -15; // current rotation deg
+    const ROT_SCALE = 0.35;  // scale down target angle (smaller = less swing)
+    const ROT_SMOOTH = 0.18; // lerp factor (smaller = smoother)
+    const ROT_MAX = 25;      // clamp range ±deg
+
+    function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+
+    function raf(){
+      // position smoothing
+      x += (tx - x) * POS_SPEED;
+      y += (ty - y) * POS_SPEED;
+
+      // compute target angle from current position to target (velocity-ish)
+      const tAng = Math.atan2(ty - y, tx - x) * 180 / Math.PI - 45; // base orientation
+      const scaled = tAng * ROT_SCALE;
+      const target = clamp(scaled, -ROT_MAX, ROT_MAX);
+      rot += (target - rot) * ROT_SMOOTH; // smooth towards target
+
+      wand.style.setProperty('--rot', rot.toFixed(1) + 'deg');
+      wand.style.left = x + 'px';
+      wand.style.top  = y + 'px';
+
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    let sparkTimer = 0;
+    function onMove(e){
+      // If user switches to Simple theme, do not create cursor sparks
+      if (document.body.classList.contains('theme-simple')) return;
+      tx = e.clientX; ty = e.clientY;
+      const now = performance.now();
+      if (now - sparkTimer > 100) { // a bit fewer sparks
+        sparkTimer = now;
+        const s = document.createElement('div'); s.className = 'cursor-spark';
+        s.style.left = e.clientX + 'px'; s.style.top = e.clientY + 'px';
+        document.body.appendChild(s);
+        s.addEventListener('animationend', () => s.remove());
+      }
+    }
+
+    function isHoverable(t){ return t.closest && t.closest('a, button, .toggle, .badge, .card'); }
+    function onOver(e){ if (isHoverable(e.target)) document.body.classList.add('cursor-hover'); }
+    function onOut(e){ if (isHoverable(e.target)) document.body.classList.remove('cursor-hover'); }
+    function onDown(){ wand.style.transform = 'translate(-50%, -50%) rotate(var(--rot)) scale(0.92)'; }
+    function onUp(){   wand.style.transform = 'translate(-50%, -50%) rotate(var(--rot)) scale(1)'; }
+
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('mouseover', onOver);
+    window.addEventListener('mouseout', onOut);
+    window.addEventListener('mousedown', onDown);
+    window.addEventListener('mouseup', onUp);
+
+    // When theme toggles to Simple, remove any existing cursor sparks immediately
+    const themeBtn = document.getElementById('toggleTheme');
+    function clearCursorSparks(){ document.querySelectorAll('.cursor-spark').forEach(n => n.remove()); }
+    if (themeBtn) themeBtn.addEventListener('click', () => {
+      if (document.body.classList.contains('theme-simple')) {
+        clearCursorSparks();
+      }
+    });
+  })();
+</script>
+
+  <!-- Self-tests (run with ?selftest=1) -->
+  <script>
+    (function(){
+      if (!/selftest=1/.test(location.search)) return; // opt-in tests
+      const results = [];
+      function test(name, fn){
+        try { const ok = !!fn(); results.push({ name, ok }); console[ok ? 'log' : 'error'](`[TEST] ${ok?'PASS':'FAIL'} - ${name}`); }
+        catch(e){ results.push({ name, ok:false, err:e }); console.error(`[TEST] FAIL - ${name}:`, e); }
+      }
+      test('Buttons exist', () => document.querySelector('[data-testid="btn-snow"]') && document.querySelector('[data-testid="btn-theme"]'));
+      test('Theme toggles class', () => {
+        const btn = document.querySelector('[data-testid="btn-theme"]');
+        const wasSimple = document.body.classList.contains('theme-simple');
+        btn.click(); const nowSimple = document.body.classList.contains('theme-simple');
+        // flip back
+        btn.click();
+        return wasSimple !== nowSimple;
+      });
+      test('Snow toggles text', () => {
+        const btn = document.querySelector('[data-testid="btn-snow"]');
+        const t1 = btn.textContent; btn.click(); const t2 = btn.textContent; btn.click();
+        return t1 !== t2;
+      });
+      console.log('[TEST] Summary:', results);
+    })();
+  </script>
+</body>
+</html>
